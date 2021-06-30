@@ -9,7 +9,7 @@ import org.http4s.server.blaze.BlazeServerBuilder
 import org.http4s.server.middleware.Logger
 import scala.concurrent.ExecutionContext.global
 
-object Http4squickstartServer {
+object QuickServer {
 
   def stream[F[_]: ConcurrentEffect](implicit T: Timer[F]): Stream[F, Nothing] = {
     for {
@@ -22,7 +22,7 @@ object Http4squickstartServer {
       // want to extract a segments not checked
       // in the underlying routes.
       httpApp = (
-        Http4squickstartRoutes.helloWorldRoutes[F](helloWorldAlg) <+>
+        QuickRoutes.helloWorldRoutes[F](helloWorldAlg) <+>
         Http4squickstartRoutes.jokeRoutes[F](jokeAlg)
       ).orNotFound
 
